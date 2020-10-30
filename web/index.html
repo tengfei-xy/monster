@@ -1,1 +1,33 @@
-hello monster
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <link rel="stylesheet" href="static/monstyle.css" type="text/css" >
+
+        <title>Monster搜索 —— 谨此献给ZHY</title>
+
+    </head>
+    <body>
+        <form id="search" name="search">
+
+            <!--搜索框-->
+            <div class="search">
+                <div class="search-box">
+                    <!--搜索输入框-->
+                    <input class="search-input" type="text" name="key" placeholder="Monster搜索 —— 谨此献给ZHY">
+                    <!--搜索按钮-->
+                    <input class="search-button" type="button"  v-on:click="searchGo" value="S">
+                </div>
+            </div>
+
+            <!--搜索结果-->
+            <div class="search-result">
+                
+            </div>
+        </form>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script type="text/javascript" src="static/monsterBase.js"></script>
+        <script type="text/javascript" src="static/websocket.js"></script>
+    </body>
+
+</html>

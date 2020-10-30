@@ -4,13 +4,16 @@ import(
 	"time"
 )
 func now() string {
-	return time.Now().Format("2020-11-20 00:00:00")
+	return time.Now().Format("2006-01-02 15:04:05")
 }
-func Info(s string){
-	fmt.Println(now()," INFO      ",s)
+func Info(s interface{}){
+	fmt.Println(now()," Info      ",s)
 }
 func Request(s string){
 	fmt.Println(now()," Request   ",s)
+}
+func Search(s string){
+	fmt.Println(now()," Search    ",s)
 }
 func Error(s error){
 	fmt.Println(now()," Error     ",s)

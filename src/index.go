@@ -4,11 +4,19 @@ import(
 	"net/http"
 	"path/filepath"
 	"io/ioutil"
+	"golang.org/x/net/websocket"
+
 )
 // my lib
 import(
 	pnt "print"
 )
+
+// 
+//
+// web Index function
+//
+//
 
 func monsterIndex(w http.ResponseWriter, r *http.Request) {
 	var reqURLExt string = filepath.Ext(r.URL.Path)
@@ -35,22 +43,54 @@ func monsterIndex(w http.ResponseWriter, r *http.Request) {
 	switch reqURL {
 	case `/`:
 		res = monsterRoot()
-	case "r":
-		res = monsterResult(reqURL)
+	// case "r":
+	// 	res = monsterResult(reqURL)
+	default:
+		res = monsterFile("../web"+reqURL)
 	}
 	w.Write(res)
 
 }
-func monsterRoot()[]byte{
-	
+func monsterRoot() []byte{
 	index, err := ioutil.ReadFile("../web/index.html")
 	if err != nil {
 		pnt.Error(err)
 	}
 	return index
-
 }
-func monsterResult(key string)[]byte{
-	getLine(key)
-	return nil
+func monsterFile(file string) []byte{
+
+	index, err := ioutil.ReadFile(file)
+	if err != nil {
+		pnt.Error(err)
+	}
+	return index
+}
+
+// 
+//
+// web socket Index function
+//
+//
+
+func wsIndex(ws *websocket.Conn) {
+	var err error
+	for {
+			var wsmsg string
+			if err = websocket.Message.Receive(ws, &wsmsg); err != nil {
+					ws.Close()
+					break
+			}
+			wsres := wsMain(wsmsg)
+
+			if err = websocket.Message.Send(ws, wsres); err != nil {
+					ws.Close()
+					break
+			}
+	}
+}
+func wsMain(key string) string{
+	pnt.Search(key)
+	r,c := searchGo(key)
+	return templateGo(r,c)
 }

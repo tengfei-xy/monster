@@ -6,24 +6,26 @@ import(
 	"strings"
 )
 // my lib
-import(
-	pnt "print"
-)
+// import(
+// 	pnt "print"
+// )
 // third lib
 import(
 	"github.com/PuerkitoBio/goquery"
 )
+
 type rLine struct{
 	Title		string
 	Link		string
 	Content		string
 }
+
 func getBaseDataResult(client *http.Client,key string) *goquery.Document {
 	// 参数解释 https://blog.csdn.net/weixin_38796720/article/details/88991153
 	// sn=30 返回30条搜索结果
-	// tn=baidulocal 站内搜索
+	// tn=baidulocal 站内搜索(但会人机验证)
 	// wd= 关键词
-	r, err := http.NewRequest("GET", "https://www.baidu.com/s?sn=30&tn=baidulocal&wd=" + url.QueryEscape(key), nil)
+	r, err := http.NewRequest("GET", "https://www.baidu.com/s?sn=30&wd=" + url.QueryEscape(key), nil)
 	if err != nil {
 		panic(err)
 	}
@@ -47,7 +49,6 @@ func getBaseDataResult(client *http.Client,key string) *goquery.Document {
 		panic(err)
 	}
 	defer res.Body.Close()
-	//pnt.Info(res.Body)
 	doc, err := goquery.NewDocumentFromReader(res.Body)
 
 	if err != nil {
@@ -57,26 +58,28 @@ func getBaseDataResult(client *http.Client,key string) *goquery.Document {
 	return doc
 
 }
-func getLine(key string)[30]rLine{
+func searchGo(key string) ([30]rLine,int) {
 	r 				:= [30]rLine{}
 
 	doc := getBaseDataResult(httpCli,key).Find("body")
 	baseLine := doc.Find("div[class~=result]")
-	//baseLine := doc.Find("div[class!=result-op").Find("div[class*=result]")
 	
-	count := baseLine.Length()
-
-	for i:=0;i< count;i++ {
+	count	:= baseLine.Length()
+	i 		:= 0
+	for ;i< count;i++ {
 		r[i].Title = strings.TrimSpace(baseLine.Find("h3>a").Eq(i).Text())
+
+		// 如果 遇到 空 搜索结果
+		// 则   跳过接下来可能的搜索条目
 		if r[i].Title == "" {
 			continue
 		}
 
 		r[i].Link,_ = baseLine.Find("h3>a").Eq(i).Attr("href")
-		r[i].Content = baseLine.Find("div[class*=c-abstract]").Eq(i).Text()//
-		pnt.Info(r[i].Title)
-		pnt.Info(r[i].Link)
-		pnt.Info(r[i].Content)
+		r[i].Content = baseLine.Find("div[class*=c-abstract]").Eq(i).Text()
+		// pnt.Info(r[i].Title)
+		// pnt.Info(r[i].Link)
+		// pnt.Info(r[i].Content)
 	}
-	return r
+	return r,i
 }
