@@ -14,3 +14,23 @@
 - 2020.10.30 项目结构化、增加web服务器（1小时）
 - 2020.10.31 websocket通信、简单设计主界面、搜索结果处理并转发客户端（7小时）
 - 2020.11.01 核心功能及基本UI完成：后台将搜索结果以Json传送到客户端,将搜索结果以渐显的方式展示（7小时）
+
+## 其他说明
+### 编译运行
+#### mac/linux
+```
+git clone https://github.com/tengfei-xy/monster.git
+# 为方便go下载包，可忽略
+export GOPROXY=https://goproxy.cn
+# 必须开启GO111MODULE
+export GO111MODULE=on
+
+cd monster/src
+# 没有sudo的运行命令，是不会监听端口的
+sudo go run *.go
+```
+
+### 必须修改项
+1. websocket的访问地址
+- 变量位置: 修改static/monsterBase.js的ws变量
+- 修改说明: 应是服务器地址，ws://用于http服务器（80端口）,wss://用于https服务器(433)
