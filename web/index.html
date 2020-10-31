@@ -9,20 +9,23 @@
     <body>
         <form id="search" name="search">
 
-            <!--搜索框-->
-            <div class="search">
+            <!--搜索页面-->
+            <div class="search-page">
+
+                <!--搜索框-->
                 <div class="search-box">
                     <!--搜索输入框-->
                     <input class="search-input" type="text" name="key" placeholder="Monster搜索 —— 谨此献给ZHY">
                     <!--搜索按钮-->
                     <input class="search-button" type="button"  v-on:click="searchGo" value="S">
                 </div>
+
+                <!--搜索结果-->
+                <div class="search-result" id="search-result">
+
+                </div>
             </div>
 
-            <!--搜索结果-->
-            <div class="search-result">
-                
-            </div>
         </form>
 
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>

@@ -4,11 +4,12 @@ import(
 	"net/http"
 	"net/url"
 	"strings"
+	"fmt"
 )
 // my lib
-// import(
-// 	pnt "print"
-// )
+import(
+	pnt "print"
+)
 // third lib
 import(
 	"github.com/PuerkitoBio/goquery"
@@ -60,13 +61,14 @@ func getBaseDataResult(client *http.Client,key string) *goquery.Document {
 }
 func searchGo(key string) ([30]rLine,int) {
 	r 				:= [30]rLine{}
+	pnt.Search(key)
 
 	doc := getBaseDataResult(httpCli,key).Find("body")
 	baseLine := doc.Find("div[class~=result]")
 	
-	count	:= baseLine.Length()
-	i 		:= 0
-	for ;i< count;i++ {
+	count	:= 0
+
+	for i:=0;i< baseLine.Length();i++ {
 		r[i].Title = strings.TrimSpace(baseLine.Find("h3>a").Eq(i).Text())
 
 		// 如果 遇到 空 搜索结果
@@ -77,9 +79,18 @@ func searchGo(key string) ([30]rLine,int) {
 
 		r[i].Link,_ = baseLine.Find("h3>a").Eq(i).Attr("href")
 		r[i].Content = baseLine.Find("div[class*=c-abstract]").Eq(i).Text()
+
+		// 二次处理数据
+		// 保证js的Json.parse()正常
+		r[i].Content = strings.Replace(r[i].Content,`"`,`\\"`,-1)
 		// pnt.Info(r[i].Title)
 		// pnt.Info(r[i].Link)
 		// pnt.Info(r[i].Content)
+
+		// 搜索结果中包含标题的爬虫结果，才能+1
+		count++
+
 	}
-	return r,i
+	pnt.Search(fmt.Sprintf("%s 搜索到%d条",key,count))
+	return r,count
 }
