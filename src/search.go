@@ -24,7 +24,6 @@ type rLine struct{
 func getBaseDataResult(client *http.Client,key string) *goquery.Document {
 	// 参数解释 https://blog.csdn.net/weixin_38796720/article/details/88991153
 	// rn=30 返回30条搜索结果
-	// tn=baidulocal 纯净结果、站内搜索(但会人机验证)
 	// wd= 关键词
 	r, err := http.NewRequest("GET", "https://www.baidu.com/s?rn=30&wd=" + url.QueryEscape(key), nil)
 	if err != nil {
@@ -61,36 +60,36 @@ func getBaseDataResult(client *http.Client,key string) *goquery.Document {
 }
 func searchGo(key string) ([30]rLine,int) {
 	r 				:= [30]rLine{}
+	i				:= 0
+	doc 			:= getBaseDataResult(httpCli,key).Find("body").Find("div[class~=result]")
+
 	pnt.Search(key)
+	doc.Each(func(j int ,s * goquery.Selection){
+		// 获取标题
+		r[i].Title = strings.TrimSpace(s.Find("h3>a").Text())
 
-	doc := getBaseDataResult(httpCli,key).Find("body")
-	baseLine := doc.Find("div[class~=result]")
-	
-	count	:= 0
+		// 不允许反馈给客户端没有标题的搜索结果
+		if r[i].Title != "" {
 
-	for i:=0;i< baseLine.Length();i++ {
-		r[i].Title = strings.TrimSpace(baseLine.Find("h3>a").Eq(i).Text())
+			// 获取链接
+			r[i].Link,_ = s.Find("h3>a").Attr("href")
+			// 获取内容
+			r[i].Content = s.Find("div[class*=c-abstract]").Text()
 
-		// 如果 遇到 空 搜索结果
-		// 则   跳过接下来可能的搜索条目
-		if r[i].Title == "" {
-			continue
+			// 限制抓取robots
+			if r[i].Content == ""{
+				r[i].Content = s.Find("p[class*=c-color-text]").Text()
+			}
+
+			// 输出log
+			// pnt.Searchf("关键词:%s 第%d条",key,i)
+			// pnt.Search(r[i].Title)
+			// pnt.Search(r[i].Link)
+			// pnt.Search(r[i].Content)
+
+			i++
 		}
-
-		r[i].Link,_ = baseLine.Find("h3>a").Eq(i).Attr("href")
-		r[i].Content = baseLine.Find("div[class*=c-abstract]").Eq(i).Text()
-
-		// 二次处理数据
-		// 保证js的Json.parse()正常
-		r[i].Content = strings.Replace(r[i].Content,`"`,`\\"`,-1)
-		// pnt.Info(r[i].Title)
-		// pnt.Info(r[i].Link)
-		// pnt.Info(r[i].Content)
-
-		// 搜索结果中包含标题的爬虫结果，才能+1
-		count++
-
-	}
-	pnt.Search(fmt.Sprintf("%s 搜索到%d条",key,count))
-	return r,count
+	})
+	pnt.Search(fmt.Sprintf("%s 搜索到%d条",key,i))
+	return r,i
 }

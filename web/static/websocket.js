@@ -21,7 +21,7 @@ function websocket(url, data, callback) {
 
 	function runwebsocket() {
 		ws.onopen = function() {
-			console.log("发送数据");
+			//console.log("发送数据");
 			ws.send(data);
 		};
 		ws.onmessage = function(evt) {
@@ -33,7 +33,7 @@ function websocket(url, data, callback) {
 			callback(result);
 		};
 		ws.onclose = function(e) {
-			console.log("websocket连接关闭啦");
+			//console.log("websocket连接关闭啦");
 			var result = {
 				status: 1,
 				msg: "close",
@@ -45,7 +45,7 @@ function websocket(url, data, callback) {
 			//reconnect(url);
 		};
 		ws.οnerrοr = function(e) {
-			console.log("websocket发生错误");
+			//console.log("websocket发生错误");
 			var result = {
 				status: 1,
 				msg: "error",
