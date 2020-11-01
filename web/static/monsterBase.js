@@ -27,7 +27,7 @@ var monster = new Vue({
                         (function(line) {
                             setTimeout( function timer() {
                                 addLine(line)
-                            },i*300);
+                            },i*100);
                         })(r[i]);
                     }
                     

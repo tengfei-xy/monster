@@ -23,10 +23,10 @@ type rLine struct{
 
 func getBaseDataResult(client *http.Client,key string) *goquery.Document {
 	// 参数解释 https://blog.csdn.net/weixin_38796720/article/details/88991153
-	// sn=30 返回30条搜索结果
-	// tn=baidulocal 站内搜索(但会人机验证)
+	// rn=30 返回30条搜索结果
+	// tn=baidulocal 纯净结果、站内搜索(但会人机验证)
 	// wd= 关键词
-	r, err := http.NewRequest("GET", "https://www.baidu.com/s?sn=30&wd=" + url.QueryEscape(key), nil)
+	r, err := http.NewRequest("GET", "https://www.baidu.com/s?rn=30&wd=" + url.QueryEscape(key), nil)
 	if err != nil {
 		panic(err)
 	}

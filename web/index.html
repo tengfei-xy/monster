@@ -3,7 +3,7 @@
         <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
         <link rel="stylesheet" href="static/monstyle.css" type="text/css" >
 
-        <title>Monster搜索 —— 谨此献给ZHY</title>
+        <title>Monster搜索 — 谨此献给ZHY</title>
 
     </head>
     <body>
@@ -11,11 +11,15 @@
 
             <!--搜索页面-->
             <div class="search-page">
+                <!--monster-logo-->
+                <div class="search-logo">
+                    <img src="static/monster.jpg" onclick="CleanSearchResult()" alt="倾心以饰做,羞赠以佳人">
+                </div>
 
                 <!--搜索框-->
                 <div class="search-box">
                     <!--搜索输入框-->
-                    <input class="search-input" type="text" name="key" placeholder="Monster搜索 —— 谨此献给ZHY">
+                    <input class="search-input" type="text" name="key" placeholder="Monster搜索 — 谨此献给ZHY">
                     <!--搜索按钮-->
                     <input class="search-button" type="button"  v-on:click="searchGo" value="S">
                 </div>
