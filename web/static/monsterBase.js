@@ -36,7 +36,7 @@ function addLine (line){
     link=line.Link
 
     // 打印搜索结果
-    console.log(line)
+    //console.log(line)
 
     search_result = document.getElementById("search-result")
     
@@ -85,4 +85,26 @@ function CleanSearchResult(){
 function restore(){
     document.search.key.value=""
     CleanSearchResult()
+}
+window.onscroll = function()
+{
+    // 搜索框的宽度
+    search_page_width = document.getElementById('search-page').clientWidth
+    search_box = document.getElementById('search-box-id')
+    search_result = document.getElementById('search-result')
+
+    let s = document.body.scrollTop
+
+    // logo的偏移高度 + logo的高度 = 临界点
+    let pd = document.getElementById('search-logo').offsetTop +  document.getElementById('search-logo').clientHeight
+
+    //console.log("视角:",s,"临界点:",pd)
+    if(s>pd) {
+        search_box.style = "position:fixed;top:0px;"
+        search_box.style.width=search_page_width
+        search_result.style="margin-top:8.8rem;"
+    }else {
+        search_box.style = "position:relative;"
+        search_result.style="margin-top:0rem;"
+    }
 }

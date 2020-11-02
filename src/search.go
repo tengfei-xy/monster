@@ -61,6 +61,7 @@ func getBaseDataResult(client *http.Client,key string) *goquery.Document {
 func searchGo(key string) ([30]rLine,int) {
 	r 				:= [30]rLine{}
 	i				:= 0
+	haskey			:= false
 	doc 			:= getBaseDataResult(httpCli,key).Find("body").Find("div[class~=result]")
 
 	pnt.Search(key)
@@ -68,28 +69,42 @@ func searchGo(key string) ([30]rLine,int) {
 		// 获取标题
 		r[i].Title = strings.TrimSpace(s.Find("h3>a").Text())
 
-		// 不允许反馈给客户端没有标题的搜索结果
+		// 过滤搜索结果:标题为空
 		if r[i].Title != "" {
 
 			// 获取链接
 			r[i].Link,_ = s.Find("h3>a").Attr("href")
+
 			// 获取内容
 			r[i].Content = s.Find("div[class*=c-abstract]").Text()
 
-			// 限制抓取robots
-			if r[i].Content == ""{
-				r[i].Content = s.Find("p[class*=c-color-text]").Text()
+			// 过滤搜索结果:内容不含关键词(怕是Money上榜)
+			if r[i].Content != "" && strings.Index(r[i].Content,key)!= -1 {
+				haskey=true
 			}
 
-			// 输出log
-			// pnt.Searchf("关键词:%s 第%d条",key,i)
-			// pnt.Search(r[i].Title)
-			// pnt.Search(r[i].Link)
-			// pnt.Search(r[i].Content)
+			// 补充搜索结果:限制抓取robots
+			if r[i].Content == ""{
+				r[i].Content = s.Find("p[class*=c-color-text]").Text()
+			} 
+			// 补充搜索结果:视频的搜索结果
+			if r[i].Content == ""{
+				r[i].Content = s.Find("div[class~=c-span9]>font>p+p").Text()
+			}
+			if r[i].Content == ""{
+				//pnt.Search(s.Text())
+				pnt.Warn("没有发现内容!关键词:%s,标题:%s",key,r[i].Title)
+			}
+			if haskey{i++}
+				// 输出log
+				// pnt.Searchf("关键词:%s 第%d条",key,i)
+				// pnt.Search(r[i].Title)
+				// pnt.Search(r[i].Link)
+				// pnt.Search(r[i].Content)
+				
 
-			i++
 		}
 	})
-	pnt.Search(fmt.Sprintf("%s 搜索到%d条",key,i))
+	pnt.Search(fmt.Sprintf(`"%s" 搜索到%d条`,key,i))
 	return r,i
 }

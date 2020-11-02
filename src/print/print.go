@@ -24,6 +24,9 @@ func Searchf(f string,a ...interface{}){
 func Space(){
 	fmt.Println(now(),"           ")
 }
+func Warn(f string,a ...interface{}){
+	fmt.Println(now()," Warn      ",fmt.Sprintf(f,a...))
+}
 func Error(s error){
 	fmt.Println(now()," Error     ",s)
 }
