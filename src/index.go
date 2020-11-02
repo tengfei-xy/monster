@@ -94,6 +94,7 @@ func wsIndex(ws *websocket.Conn) {
 	}
 }
 func wsMain(key string) string{
+	
 	// 根据关键词搜索,返回包含标题、链接、内容的r结构体，以及c数量
 	r,c := searchGo(key)
 

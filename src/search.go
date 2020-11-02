@@ -65,6 +65,8 @@ func searchGo(key string) ([30]rLine,int) {
 	doc 			:= getBaseDataResult(httpCli,key).Find("body").Find("div[class~=result]")
 
 	pnt.Search(key)
+	// h,_ := doc.Html()
+	// pnt.Info(h)
 	doc.Each(func(j int ,s * goquery.Selection){
 		// 获取标题
 		r[i].Title = strings.TrimSpace(s.Find("h3>a").Text())
@@ -79,8 +81,13 @@ func searchGo(key string) ([30]rLine,int) {
 			r[i].Content = s.Find("div[class*=c-abstract]").Text()
 
 			// 过滤搜索结果:内容不含关键词(怕是Money上榜)
-			if r[i].Content != "" && strings.Index(r[i].Content,key)!= -1 {
-				haskey=true
+			if r[i].Content != "" {
+				for _,K := range strings.Split(strings.ToUpper(key)," "){
+					if strings.Index(strings.ToUpper(r[i].Content),K) != -1{
+						haskey=true
+						break
+					}
+				}
 			}
 
 			// 补充搜索结果:限制抓取robots
