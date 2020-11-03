@@ -1,4 +1,4 @@
-# Monster 搜索（献给ZHY）
+# Monster搜索（献给ZHY）
 
 ## 千言乱语
 
@@ -7,6 +7,19 @@
 ## 礼物介绍
 
 **Monster搜索**是一种基于xxx度搜索引擎进行二次开发的，将去除前者的广告、无用信息，提供纯粹的、链接式结果的，适配手机、平板、笔记本的搜索平台。
+
+## 礼物展示
+### 宽屏（笔记本/宽屏显示器）
+![宽屏展示](https://file.xunyang.site:8888/monster/Monster%E6%90%9C%E7%B4%A2-%E5%AE%BD%E5%B1%8F.png)
+
+### 平板
+![平板展示](https://file.xunyang.site:8888/monster/Monster%E6%90%9C%E7%B4%A2-%E5%B9%B3%E6%9D%BF%E5%B1%95%E7%A4%BA.jpg)
+
+### 手机
+![手机展示](https://file.xunyang.site:8888/monster/Mosnter%E6%90%9C%E7%B4%A2-%E6%89%8B%E6%9C%BA%E7%AB%AF%E5%B1%95%E7%A4%BA.jpg)
+
+### 搜索结果
+![搜索结果展示](https://file.xunyang.site:8888/monster/Monster%E6%90%9C%E7%B4%A2-%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png)
 
 ## 开发进度
 - 2020.10.28 想法诞生
@@ -17,24 +30,34 @@
 - 2020.11.01 首页优化UI(2小时)
 - 2020.11.02 更改:搜索输入框不填充内容、清除关键词的前后空格，Bug修复:解决搜索结果中html被解析的问题、解决搜索结果没有包含限制指令的搜索结果问题(2小时)
 - 2020.11.02 优化:手机端UI,取消回车自动提交表单(1小时)
-- 2020.11.02 优化:过滤搜索内容不含关键词类型的搜索结果和完善对视频搜索内容的补充,不保留搜索内容不包含关键词的砸钱情况.升级:搜索框随页面滚动顶置于页面顶部(5小时)
+- 2020.11.02 优化:过滤搜索内容不含关键词类型的搜索结果和完善对视频搜索内容的补充,升级:搜索框随页面滚动顶置于页面顶部(5小时)
+- 2020.11.02 优化不保留搜索内容不包含关键词的砸钱情况.优化搜索结果的过滤以及选择方法
+- 2020.11.03 进入测试阶段,并修改README.MD
 
-## 其他说明
-### 编译运行
-#### mac/linux
+## 访问方式
+1. [Monster搜索](http://116.62.78.44)
+2. 本地搭建服务方式（参考手动编译运行）
+
+
+## 编译运行
+
+### 必须修改项
+1. websocket的访问地址
+- 变量位置: 修改**static/monsterBase.js:2**的ws变量
+- 修改说明: 应是服务器地址，ws://用于http服务器（80端口）,wss://用于https服务器(433)
+
+### mac/linux
 ```
 git clone https://github.com/tengfei-xy/monster.git
+
 # 为方便go下载包，可忽略
 export GOPROXY=https://goproxy.cn
+
 # 必须开启GO111MODULE
 export GO111MODULE=on
 
 cd monster/src
+
 # 没有sudo的运行命令，是不会监听端口的
 sudo go run *.go
 ```
-
-### 必须修改项
-1. websocket的访问地址
-- 变量位置: 修改static/monsterBase.js的ws变量
-- 修改说明: 应是服务器地址，ws://用于http服务器（80端口）,wss://用于https服务器(433)
