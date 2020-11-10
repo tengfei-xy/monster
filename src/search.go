@@ -99,8 +99,10 @@ func searchGo(key string) ([30]rLine,int) {
 				r[i].Content = s.Find("div[class~=c-span9]>font>p+p").Text()
 			}
 			if r[i].Content == ""{
-				//pnt.Search(s.Text())
+				// 打印当前html
+				//pnt.Search(s.Html())
 				pnt.Warn("没有发现内容!关键词:%s,标题:%s",key,r[i].Title)
+				haskey = false
 			}
 			if haskey{i++}
 				// 输出log
