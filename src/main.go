@@ -18,6 +18,6 @@ func main (){
 	http.HandleFunc("/", monsterIndex)
 	http.Handle("/ws", websocket.Handler(wsIndex))
 	go http.ListenAndServe("0.0.0.0:80", nil)
-	http.ListenAndServeTLS("0.0.0.0:443", "../ssl/ssl.crt", "../ssl/ssl.key", nil)
+	pnt.Info(http.ListenAndServeTLS("0.0.0.0:443", "../ssl/ssl.pem", "../ssl/ssl.key", nil))
 		
 }
