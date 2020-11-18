@@ -2,7 +2,7 @@
 
 ## 千言乱语
 
-虽然大学毕业了2年，我去了职场，你升了学，我们依然联系，虽说一年也没几次哈哈。当你决定在毕业一年后的11月20日，邀请我体验憨憨的海底捞的生日活动时，我便开始绞尽脑汁想送你什么礼物比较好。没过多久，这个灵感在我脑海中诞生。但我并不能确定这一定是一个十分实用的礼物，尽管我悄摸摸希望它能作为你的互联网入口。这个礼物我虽然跟你说是全世界独一无二的，但从功能上来讲应该并不是。距离那一天，还有22天，Let's go!
+虽然大学毕业了2年，我去了职场，你升了学，我们依然联系，虽说一年也没几次哈哈。当你决定在毕业一年后的11月20日，邀请我体验憨憨的海底捞的生日活动时，我便开始绞尽脑汁想送你什么礼物比较好。没过多久，这个灵感在我脑海中诞生。但我并不能确定这一定是一个十分实用的礼物，尽管我悄摸摸希望它能作为你的互联网入口。这个礼物我虽然跟你说是全世界独一无二的，但从功能上来讲应该并不是。Let's go!
 
 ## 礼物介绍
 
@@ -10,16 +10,16 @@
 
 ## 礼物展示
 ### 宽屏（笔记本/宽屏显示器）
-![宽屏展示](https://github.com/tengfei-xy/show/blob/main/monster/Monster%E6%90%9C%E7%B4%A2-%E5%AE%BD%E5%B1%8F.png)
+![宽屏展示](https://raw.githubusercontent.com/tengfei-xy/resources/master/monster/Monster%E6%90%9C%E7%B4%A2-%E5%AE%BD%E5%B1%8F.png)
 
 ### 平板
-![平板展示](https://github.com/tengfei-xy/show/blob/main/monster/Monster%E6%90%9C%E7%B4%A2-%E5%B9%B3%E6%9D%BF%E5%B1%95%E7%A4%BA.jpg)
+![平板展示](https://raw.githubusercontent.com/tengfei-xy/resources/master/monster/Monster%E6%90%9C%E7%B4%A2-%E5%B9%B3%E6%9D%BF%E5%B1%95%E7%A4%BA.jpg)
 
 ### 手机
-![手机展示](https://github.com/tengfei-xy/show/blob/main/monster/Mosnter%E6%90%9C%E7%B4%A2-%E6%89%8B%E6%9C%BA%E7%AB%AF%E5%B1%95%E7%A4%BA.jpg)
+![手机展示](https://raw.githubusercontent.com/tengfei-xy/resources/master/monster/Mosnter%E6%90%9C%E7%B4%A2-%E6%89%8B%E6%9C%BA%E7%AB%AF%E5%B1%95%E7%A4%BA.jpg)
 
 ### 搜索结果
-![搜索结果展示](https://github.com/tengfei-xy/show/blob/main/monster/Monster%E6%90%9C%E7%B4%A2-%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png)
+![搜索结果展示](https://raw.githubusercontent.com/tengfei-xy/resources/master/monster/Monster%E6%90%9C%E7%B4%A2-%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png)
 
 ## 更新内容
 - 2020.10.28 想法诞生
