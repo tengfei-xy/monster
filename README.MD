@@ -6,9 +6,15 @@
 
 ## 礼物介绍
 
-**Monster搜索**是一种基于百度和Google搜索引擎进行二次开发的，去除前者的广告、无用信息，提供纯粹的、链接式结果的，适配手机、平板、笔记本的搜索平台。
+[**Monster搜索**](https://monsters.vip)是一种基于百度和Google搜索引擎进行二次开发的，去除前者的广告、无用信息，提供纯粹的、链接式结果的，适配手机、平板、笔记本的搜索平台。
 
 ## 礼物展示
+
+### 基本样式
+独特的域名:monsters.vip
+主题色:牛油果绿
+网站logo:无脸男
+
 ### 宽屏（笔记本/宽屏显示器）
 ![宽屏展示](https://raw.githubusercontent.com/tengfei-xy/resources/master/monster/Monster%E6%90%9C%E7%B4%A2-%E5%AE%BD%E5%B1%8F.png)
 
@@ -20,6 +26,38 @@
 
 ### 搜索结果
 ![搜索结果展示](https://raw.githubusercontent.com/tengfei-xy/resources/master/monster/Monster%E6%90%9C%E7%B4%A2-%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E5%B1%95%E7%A4%BA.png)
+
+## 礼物彩蛋
+一共有4个，其中三种以网页弹窗的方式（有本事别看js....）
+
+## 访问方式
+1. [Monster搜索](https://monsters.vip)（双服务器部署方式）
+2. 本地搭建服务方式（单服务器部署方式:参考手动编译运行）
+
+## 功能概览
+1. 可以直接且同时搜索无广告的百度和google
+2. 支持快捷键直弹窗搜索结果
+
+
+## 管理地址栏默认访问搜索引擎
+### 电脑端
+#### 1.chrome
+1. 访问[chrome设置](chrome://settings/searchEngines)
+2. 点击添加
+3. 搜索引擎：`Monster搜索`，关键词：`monsters.vip`,格式地址：`https://monsters.vip/?key=%s`
+以上方式为手动，也可以自动，直接访问该[网站](https://monsters.vip/?key=ZHY)进行自动添加
+添加后，点击对应的Monster搜索的**右侧的三竖点按钮**,并点击**设为默认选项**
+
+#### 2.safari
+苹果的safari均不支持修改自定义的浏览器
+
+## 快速弹窗
+
+### 电脑端
+safari和chrome 按下跨快捷键开始弹窗后，在首页的地址栏右侧进行允许弹窗
+
+### 手机/平板
+ipad的safari 需手动单次允许每一个弹窗
 
 ## 更新内容
 - 2020.10.28 想法诞生
@@ -38,9 +76,9 @@
 - 2020.11.18 实行双服务器部署方式,以滚动页面接近底部时开始访问下一搜索引擎(2小时)
 - 2020.11.20 优化Google搜索结果的链接抓取，优化彩蛋，优化使用下一个搜索引擎搜索时的过渡
 
-## 访问方式
-1. [Monster搜索](https://monsters.vip)（双服务器部署方式）
-2. 本地搭建服务方式（单服务器部署方式:参考手动编译运行）
+## 正式版更新内容
+- 2020.11.21 更新支持通过URL参数直接搜索(详见添加至搜索引擎)、支持快捷键(ctrl/cmd + enter)快速弹出(5个)搜索结果
+
 
 
 ## 编译运行

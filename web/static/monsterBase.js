@@ -3,26 +3,34 @@ var next = 0
 //             "google"                  ,"baidu" 
 const wsurl = ["wss://hk.monsters.vip/ws","wss://monsters.vip/ws"]
 
-function searchGo(clear){
+// clear 是否清空，只有重新搜索的时候才能是true
+// pop 是否直接弹出搜索结果
+function searchGo(clear,pop){
+    key = document.search.key.value.trim()
     
+    if (key == "") {return}
     
     if (clear) { next = 0}
 
     if (next == wsurl.length ){
         return
     }
-    key = document.search.key.value.trim()
-    
     if (surprise(key)) {return}
-    console.log("key:",key," req:",wsurl[next])
+
     if (key.length != 0){
         if (clear){CleanSearchResult()} 
+        console.log("key:",key," req:",wsurl[next])
         
         websocket(wsurl[next],key,function(e){
             r=JSON.parse(e.data)
             for(let i=0;i<r.length;i++){
                 (function(line) {
                     setTimeout( function timer() {
+
+                        // 如果是通过ctrl/cmd + enter 进行搜索 且是第一个搜索引擎，则直接弹出前5个搜索结果,
+                        if (pop && i <5 && clear) {window.open(line.Link,"_blank")}
+
+                        //将标题、链接、内容生成到搜索条目中展示
                         addLine(line)
                     },i*100);
                 })(r[i]);
@@ -140,12 +148,30 @@ window.onscroll = function()
 
 // 按键判断
 document.onkeydown=function(e){
-    if (e.code=="Enter"){
-        searchGo(true)
+    let enter= (e.code=="Enter")
+    let ctrl = e.ctrlKey || e.metaKey
+
+    if (ctrl && enter){
+        searchGo(true,true)
+    } else if (enter){
+        searchGo(true,false)
         return
     }
 }
 
+// 页面加载时
+window.onload = function(){
+    let url = window.location.search
+    if (url == ""){
+        return
+    }
+    let l = url.split("=")
+    if (l[0]="key") {
+        let key = l[1]
+        document.search.key.value = key
+        searchGo(true,false)
+    }
+}
 function surprise(key){
     if (key == "朱宏宇" || key =="ZHY") {
         
