@@ -30,9 +30,8 @@
 ## 礼物彩蛋
 一共有4个，其中三种以网页弹窗的方式（有本事别看js....）
 
-## 访问方式
-1. [Monster搜索](https://monsters.vip)（双服务器部署方式）
-2. 本地搭建服务方式（单服务器部署方式:参考手动编译运行）
+## 访问方式（前后端已分离）
+1. [Monster搜索](https://monsters.vip)
 
 ## 功能概览
 1. 可以直接且同时搜索无广告的百度和google
@@ -78,29 +77,4 @@ ipad的safari 需手动单次允许每一个弹窗
 
 ## 正式版更新内容
 - 2020.11.21 更新支持通过URL参数直接搜索(详见添加至搜索引擎)、支持快捷键(ctrl/cmd + enter)快速弹出(5个)搜索结果
-
-
-
-## 编译运行
-
-### 必须修改项（无论何种部署方式）
-1. websocket的访问地址
-- 变量位置: 修改**static/monsterBase.js:3**的wsurl变量
-- 修改说明: 应是服务器地址，ws://用于http服务器（80端口）,wss://用于https服务器(433端口)
-
-
-### mac/linux
-```
-git clone https://github.com/tengfei-xy/monster.git
-
-# 为方便go下载包，可忽略
-export GOPROXY=https://goproxy.cn
-
-# 必须开启GO111MODULE
-export GO111MODULE=on
-
-cd monster/src
-
-# 没有root权限，程序是不会监听端口的
-sudo go run *.go
-```
+- 2020.12.15 前后端分离，优化代码量
