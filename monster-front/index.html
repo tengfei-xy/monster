@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="static/index.css" type="text/css">
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon" />
+    <title>Monster搜索 — 谨此献给ZHY</title>
+
+</head>
+
+<body>
+    <form id="search" name="search" action="" onkeydown="if(event.keyCode==13){return false;}">
+
+        <!--搜索页面-->
+        <div class="search-page" id="search-page">
+            <!--monster-logo-->
+            <div class="search-logo" id="search-logo">
+                <img src="static/monster.jpg" onclick="restore()" alt="倾心以饰做,羞赠以佳人">
+            </div>
+
+            <!--搜索框-->
+            <div class="search-box" id="search-box-id">
+
+                <div class="search_engine_box">
+                    <!--默认搜索引擎-->
+                    <div id="search_engine_default"></div>
+                    <!--搜索引擎列表-->
+                    <div id="search_engine_list"></div>
+                </div>
+
+                <!--搜索输入框-->
+                <input class="search-input" type="text" id="search_input" name="key" value="" autocomplete="off" placeholder="Monster搜索 — 谨此献给ZHY">
+
+                <!--搜索按钮-->
+                <input class="search-button" type="button" id="search_button" onclick="searchGo(true,false)" value="S">
+            </div>
+
+            <!--搜索结果-->
+            <div class="search-result" id="search-result">
+                <div id="res1"></div>
+                <div id="res2"></div>
+            </div>
+
+        </div>
+
+    </form>
+    <script src="https://s3.pstatp.com/cdn/expire-1-M/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="static/index.js"></script>
+    <script type="text/javascript" src="static/websocket.js"></script>
+</body>
+
+</html>
